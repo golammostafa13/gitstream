@@ -1,19 +1,18 @@
 import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
+import Stack from "@mui/material/Stack";
 import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 
-import { _products } from 'src/_mock';
 import { DashboardContent } from 'src/layouts/dashboard';
 
-import { ProductItem } from '../product-item';
-import { ProductSort } from '../product-sort';
-import { CartIcon } from '../product-cart-widget';
-import { ProductFilters } from '../product-filters';
+import FeedItems from "../feed-items";
+import { FeedSort } from '../feed-sort';
+import {repositories} from "../../../_mock";
+import { FeedFilters } from '../feed-filters';
 
-import type { FiltersProps } from '../product-filters';
+import type { FiltersProps } from '../feed-filters';
 
 // ----------------------------------------------------------------------
 
@@ -98,7 +97,7 @@ export function FeedView() {
         sx={{ mb: 5 }}
       >
         <Box gap={1} display="flex" flexShrink={0} sx={{ my: 1 }}>
-          <ProductFilters
+          <FeedFilters
             canReset={canReset}
             filters={filters}
             onSetFilters={handleSetFilters}
@@ -115,7 +114,7 @@ export function FeedView() {
             }}
           />
 
-          <ProductSort
+          <FeedSort
             sortBy={sortBy}
             onSort={handleSort}
             options={[
@@ -128,13 +127,9 @@ export function FeedView() {
         </Box>
       </Box>
 
-      <Grid container spacing={3}>
-        {_products.map((product) => (
-          <Grid key={product.id} xs={12} sm={6} md={3}>
-            <ProductItem product={product} />
-          </Grid>
-        ))}
-      </Grid>
+      <Stack spacing={3}>
+        <FeedItems items={repositories} />
+      </Stack>
 
       <Pagination count={10} color="primary" sx={{ mt: 8, mx: 'auto' }} />
     </DashboardContent>

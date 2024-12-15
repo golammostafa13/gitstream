@@ -1,6 +1,6 @@
 import { Label } from 'src/components/label';
 import { SvgColor } from 'src/components/svg-color';
-
+import RssFeedIcon from '@mui/icons-material/RssFeed';
 // ----------------------------------------------------------------------
 
 const icon = (name: string) => (
@@ -31,7 +31,7 @@ export const navData = [
   {
     title: 'Feed',
     path: '/feed',
-    icon: icon('ic-cart'),
+    icon: <RssFeedIcon />,
     info: (
         <Label color="error" variant="inverted">
           +3
